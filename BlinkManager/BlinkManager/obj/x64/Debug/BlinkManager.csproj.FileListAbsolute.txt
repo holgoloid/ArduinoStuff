@@ -1,0 +1,14 @@
+C:\Source\BlinkManager\BlinkManager\obj\x64\Debug\App.g.i.cs
+C:\Source\BlinkManager\BlinkManager\obj\x64\Debug\App.g.cs
+C:\Source\BlinkManager\BlinkManager\obj\x64\Debug\Controls\LightColorPicker.g.i.cs
+C:\Source\BlinkManager\BlinkManager\obj\x64\Debug\Controls\LightColorPicker.g.cs
+C:\Source\BlinkManager\BlinkManager\obj\x64\Debug\MainPage.g.i.cs
+C:\Source\BlinkManager\BlinkManager\obj\x64\Debug\MainPage.g.cs
+C:\Source\BlinkManager\BlinkManager\obj\x64\Debug\XamlTypeInfo.g.cs
+C:\Source\BlinkManager\BlinkManager\obj\x64\Debug\App.xaml
+C:\Source\BlinkManager\BlinkManager\obj\x64\Debug\Controls\LightColorPicker.xaml
+C:\Source\BlinkManager\BlinkManager\obj\x64\Debug\MainPage.xaml
+C:\Source\BlinkManager\BlinkManager\obj\x64\Debug\App.xbf
+C:\Source\BlinkManager\BlinkManager\obj\x64\Debug\Controls\LightColorPicker.xbf
+C:\Source\BlinkManager\BlinkManager\obj\x64\Debug\MainPage.xbf
+C:\Source\BlinkManager\BlinkManager\obj\x64\Debug\XamlSaveStateFile.xml

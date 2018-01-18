@@ -1,0 +1,39 @@
+﻿<Page
+    x:Class="BlinkManager.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:BlinkManager"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ctl="using:BlinkManager.Controls"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <ctl:LightColorPicker Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" LightIndex="1" ColorChanged="LightColorPicker_ColorChanged" />
+
+        <ctl:LightColorPicker Grid.Row="0" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" LightIndex="2" ColorChanged="LightColorPicker_ColorChanged" />
+
+        <ctl:LightColorPicker Grid.Row="0" Grid.Column="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" LightIndex="3" ColorChanged="LightColorPicker_ColorChanged" />
+
+        <ctl:LightColorPicker Grid.Row="0" Grid.Column="4" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" LightIndex="4" ColorChanged="LightColorPicker_ColorChanged" />
+
+        <ctl:LightColorPicker Grid.Row="0" Grid.Column="5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" LightIndex="5" ColorChanged="LightColorPicker_ColorChanged" />
+        <Button Grid.Row="3" Grid.Column="1" Background="Violet" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="Button_Click" />
+
+    </Grid>
+</Page>

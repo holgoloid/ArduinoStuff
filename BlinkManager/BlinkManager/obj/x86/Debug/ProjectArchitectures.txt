@@ -1,0 +1,1 @@
+C:\Source\BlinkManager\BlinkManager\BlinkManager.csproj;x86
