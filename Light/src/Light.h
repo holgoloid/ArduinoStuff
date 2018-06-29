@@ -13,25 +13,29 @@ class rgb {
 class Light {
   public:
     Light();
-    rgb GetColor();
+    rgb Loop();
     void SetBaseColor(int r, int g, int b);
-    void SetBlink(int r, int g, int b, int blinkDuration, int blinkCount);
-    void SetGlow(int r, int g, int b, int cycleDuration, int glowRange);
-    void Sync();
+    void SetGlow(int cycleDuration, int glowRange);
+    void SetBlink(int blinkDuration);
+    void SetBlinkEffect(int r, int g, int b, int blinkDuration, int blinkCount);
+    void ResetTic();
     
   private:
     rgb _baseColor;
 
-    rgb _glowColor;
     int _glowCycleDuration;   
     int _glowRange; 
     int _glowTic;
 
-    rgb _blinkColor;
-    int _blinkCount;
     bool _blinkState;
     int _blinkDuration;
     int _blinkTic;
+
+    rgb _blinkEffectColor;
+    int _blinkEffectCount;
+    bool _blinkEffectState;
+    int _blinkEffectDuration;
+    int _blinkEffectTic;
 };
 
 #endif

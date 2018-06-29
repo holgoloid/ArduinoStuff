@@ -1,0 +1,9 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs
+/TogglSnusProxy/TogglSnusProxy/obj
+/TogglSnusProxy/TogglSnusProxy/bin/Debug/netcoreapp2.0
+/TogglSnusProxy/obj/Docker
+/TogglSnusProxy/.vs/TogglSnusProxy
