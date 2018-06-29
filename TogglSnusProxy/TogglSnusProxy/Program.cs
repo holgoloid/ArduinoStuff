@@ -13,7 +13,7 @@ namespace TogglSnusProxy {
 
     private static List<TogglUser> Users { get; set; } = new List<TogglUser>();
 
-    static void Main(string[] args) {
+    static async Task Main(string[] args) {
 
       //Users.Add(new TogglUser { Name = "fredrik", Token = "04d9e8f7acba22d60f13891e7943c0bc"});
       Users.Add(new TogglUser { Name = "marcus", Token = "d8c314c8a1705306eb077669b9e30fcf" });
@@ -40,14 +40,12 @@ namespace TogglSnusProxy {
       while (true) {
         Thread.Sleep(120_000);
 
-        Task.Run(async () => {
-          foreach (var user in Users) {
-            var toggl = new TogglApi(user.Token);
-            var entry = await toggl.GetCurrentTimeEntry();
-            var isLogging = entry != null;
-            mqtt.ReportStatus(user.Name, isLogging);
-          }
-        });
+        foreach (var user in Users) {
+          var toggl = new TogglApi(user.Token);
+          var entry = await toggl.GetCurrentTimeEntry();
+          var isLogging = entry != null;
+          mqtt.ReportStatus(user.Name, isLogging);
+        }
       }
     }
 
