@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Linq;
 using Newtonsoft.Json;
+using TogglSnusProxy.Util;
 
 namespace TogglSnusProxy.Toggl {
   public class TogglApi {
@@ -13,6 +14,7 @@ namespace TogglSnusProxy.Toggl {
       => Convert.ToBase64String(Encoding.ASCII.GetBytes($"{apiToken}:api_token"));
 
     private const string api = "https://www.toggl.com/api/v8/time_entries";
+    private const string projectsApi = "https://www.toggl.com/api/v8/projects";
 
     private string apiToken { get; set; }
 
@@ -42,7 +44,7 @@ namespace TogglSnusProxy.Toggl {
             }}))
       );
 
-      Console.WriteLine("Response StatusCode: " + (int)response.StatusCode);
+      Logger.Log("Response StatusCode: " + (int)response.StatusCode);
 
       return true;
     }
@@ -59,7 +61,7 @@ namespace TogglSnusProxy.Toggl {
               description = ""
             }})));
 
-      Console.WriteLine("Response StatusCode: " + (int)response.StatusCode);
+      Logger.Log("Response StatusCode: " + (int)response.StatusCode);
 
       return true;
     }
@@ -68,11 +70,20 @@ namespace TogglSnusProxy.Toggl {
 
       var response = await GetClient().GetAsync($"{api}/current");
 
-      Console.WriteLine("Response StatusCode: " + (int)response.StatusCode);
+      Logger.Log("Response StatusCode: " + (int)response.StatusCode);
 
       var content = response.Content;
       var result = await content.ReadAsStringAsync();
-      return JsonConvert.DeserializeObject<TimeEntryRoot>(result).data;
+      return JsonConvert.DeserializeObject<TogglRoot<TimeEntry>>(result).data;
+    }
+
+    public async Task<Project> GetProject(int projectId) {
+
+      var response = await GetClient().GetAsync($"{projectsApi}/{projectId}");
+
+      var content = response.Content;
+      var result = await content.ReadAsStringAsync();
+      return JsonConvert.DeserializeObject<TogglRoot<Project>>(result).data;
     }
 
     public async Task<TimeEntry> GetLastTimeEntry() {
@@ -82,14 +93,14 @@ namespace TogglSnusProxy.Toggl {
 
     public async Task<bool> StopLogging(TimeEntry entry) {
       var response = await GetClient().PutAsync($"{api}/{entry.id}/stop", null);
-      Console.WriteLine("Response StatusCode: " + (int)response.StatusCode);
+      Logger.Log("Response StatusCode: " + (int)response.StatusCode);
       return true;
     }
 
     public async Task<TimeEntry[]> GetEntries() {
       var response = await GetClient().GetAsync($"{api}");
 
-      Console.WriteLine("Response StatusCode: " + (int)response.StatusCode);
+      Logger.Log("Response StatusCode: " + (int)response.StatusCode);
 
       var content = response.Content;
       var result = await content.ReadAsStringAsync();

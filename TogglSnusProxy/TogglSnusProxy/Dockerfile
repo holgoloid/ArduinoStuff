@@ -1,4 +1,4 @@
-FROM microsoft/dotnet:2.0-sdk as builder  
+FROM microsoft/dotnet:2.1-sdk as builder  
 ENV DOTNET_CLI_TELEMETRY_OPTOUT 1
 
 RUN mkdir -p /root/src/app  
@@ -9,7 +9,7 @@ WORKDIR /root/src/app/TogglSnusProxy
 RUN dotnet restore ./TogglSnusProxy.csproj  
 RUN dotnet publish -c release -o published -r linux-arm
 
-FROM microsoft/dotnet:2.0.0-runtime-stretch-arm32v7
+FROM microsoft/dotnet:2.1.1-runtime-stretch-slim-arm32v7
 
 WORKDIR /root/  
 COPY --from=builder /root/src/app/TogglSnusProxy/published .

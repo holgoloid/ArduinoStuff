@@ -1,5 +1,5 @@
 ﻿namespace TogglSnusProxy.Toggl {
-  public class TimeEntryRoot {
-    public TimeEntry data { get; set; }
+  public class TogglRoot<T> {
+    public T data { get; set; }
   }
 }
