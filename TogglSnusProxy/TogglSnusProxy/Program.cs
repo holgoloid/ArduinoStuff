@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -17,10 +18,17 @@ namespace TogglSnusProxy {
 
     private static Snus.Color NoProjectColor => new Snus.Color { r = 250, g = 0, b = 0 };
 
+    private static readonly AutoResetEvent waitHandle = new AutoResetEvent(false);
+
     static void Main(string[] args) {
+
+
+      Logger.Log("Startar upp..");
 
       Users.Add(new TogglUser { Name = "fredrik", Token = "04d9e8f7acba22d60f13891e7943c0bc"});
       Users.Add(new TogglUser { Name = "marcus", Token = "d8c314c8a1705306eb077669b9e30fcf" });
+
+      Logger.Log($"Användare: {string.Join(", ", Users.Select(x => x.Name))}");
 
       mqtt.Initialize();
 
@@ -43,7 +51,12 @@ namespace TogglSnusProxy {
           await HandleRefresh(user);
       };
 
-      while (true) { Thread.Sleep(10000); }
+      Console.CancelKeyPress += (o, e) => {
+        Logger.Log("Stänger ner");
+        waitHandle.Set();
+      };
+
+      waitHandle.WaitOne();
     }
 
     private static async Task HandleDoubleClick(TogglUser user) {

@@ -44,7 +44,7 @@ namespace TogglSnusProxy.Toggl {
             }}))
       );
 
-      Logger.Log("Response StatusCode: " + (int)response.StatusCode);
+      Logger.LogHttpResponse((int)response.StatusCode);
 
       return true;
     }
@@ -61,7 +61,7 @@ namespace TogglSnusProxy.Toggl {
               description = ""
             }})));
 
-      Logger.Log("Response StatusCode: " + (int)response.StatusCode);
+      Logger.LogHttpResponse((int)response.StatusCode);
 
       return true;
     }
@@ -70,7 +70,7 @@ namespace TogglSnusProxy.Toggl {
 
       var response = await GetClient().GetAsync($"{api}/current");
 
-      Logger.Log("Response StatusCode: " + (int)response.StatusCode);
+      Logger.LogHttpResponse((int)response.StatusCode);
 
       var content = response.Content;
       var result = await content.ReadAsStringAsync();
@@ -80,6 +80,8 @@ namespace TogglSnusProxy.Toggl {
     public async Task<Project> GetProject(int projectId) {
 
       var response = await GetClient().GetAsync($"{projectsApi}/{projectId}");
+
+      Logger.LogHttpResponse((int)response.StatusCode);
 
       var content = response.Content;
       var result = await content.ReadAsStringAsync();
@@ -93,14 +95,14 @@ namespace TogglSnusProxy.Toggl {
 
     public async Task<bool> StopLogging(TimeEntry entry) {
       var response = await GetClient().PutAsync($"{api}/{entry.id}/stop", null);
-      Logger.Log("Response StatusCode: " + (int)response.StatusCode);
+      Logger.LogHttpResponse((int)response.StatusCode);
       return true;
     }
 
     public async Task<TimeEntry[]> GetEntries() {
       var response = await GetClient().GetAsync($"{api}");
 
-      Logger.Log("Response StatusCode: " + (int)response.StatusCode);
+      Logger.LogHttpResponse((int)response.StatusCode);
 
       var content = response.Content;
       var result = await content.ReadAsStringAsync();
