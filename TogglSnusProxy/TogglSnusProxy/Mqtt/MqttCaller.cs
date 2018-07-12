@@ -19,7 +19,9 @@ namespace TogglSnusProxy {
 
     private MqttClient client;
 
-    public void Initialize() {
+    public bool IsConnected => client.IsConnected;
+
+    public void Connect() {
 
       Logger.Log($"Kontaktar {brokerUrl}");
 
@@ -41,7 +43,11 @@ namespace TogglSnusProxy {
 
         EventRecieved.Invoke(parsed);
       };
+
+      client.ConnectionClosed += (o, e) => Connect();
     }
+
+    public void Disconnect() => client.Disconnect();
 
     public void ReportStatus(string apiToken, bool isLogging, Color color = null) {
       var response = new MqttResponse {
